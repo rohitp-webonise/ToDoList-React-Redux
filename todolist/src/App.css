@@ -1,17 +1,22 @@
 body {
-  background-color: #272727;
-  font-family: Arial, sans-serif;
-  color: #fff;
+  background: linear-gradient(135deg, #8e2de2, #4a00e0, #00c6fb);
+  background-size: 200% 200%;
+  animation: gradientAnimation 15s ease infinite;
+  justify-content: center;
 }
 
 .app {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  height: 75vh;
+  justify-content: center;
+  align-items: center;
+  /*
   background-color:#272727;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
-  animation: fadeIn 1s ease;
+  margin:0 auto;
+  animation: fadeIn 1s ease; */
 }
 
 .app h1 {
