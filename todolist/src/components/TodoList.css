@@ -1,0 +1,23 @@
+.todo-list {
+    margin-top: 16px;
+    animation: slideIn 0.5s ease;
+  }
+  
+  .todo-list .todo-item:last-child {
+    margin-bottom: 0;
+  }
+  
+  .todo-list .todo-item:not(:last-child) {
+    margin-bottom: 8px;
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }

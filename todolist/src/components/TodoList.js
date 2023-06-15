@@ -1,22 +1,22 @@
-import React from 'react'
-import "./todo.css"
+import React from 'react';
+import { connect } from 'react-redux';
+import TodoItem from './TodoItem';
+import './TodoList.css';
 
-const TodoList = () => {
+const TodoList = ({ todos }) => {
   return (
-    <>
-       <div className='main-div'>
-      <div className='child-div'>
-        <figure>
-          <figcaption>Add Your List Here ✌️</figcaption>
-        </figure>
-        <div className='addItems'>
-            <input type='text' placeholder= "✍️ Add Items.. "/>
-            <i className="fa fa-plus add-btn">Add</i>
-        </div>
-      </div>
-    </div>  
-    </>
-  )
-}
+    <div className="todo-list">
+      {todos.map((todo) => (
+        <TodoItem key={todo.id} todo={todo} />
+      ))}
+    </div>
+  );
+};
 
-export default TodoList
+const mapStateToProps = (state) => {
+  return {
+    todos: state.todos
+  };
+};
+
+export default connect(mapStateToProps)(TodoList);

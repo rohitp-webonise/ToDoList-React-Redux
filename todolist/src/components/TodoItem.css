@@ -1,0 +1,25 @@
+.todo-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    animation: fadeIn 0.5s ease;
+  }
+  
+  .todo-item.completed label {
+    text-decoration: line-through;
+  }
+  
+  .todo-item input[type="checkbox"] {
+    margin-right: 8px;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
