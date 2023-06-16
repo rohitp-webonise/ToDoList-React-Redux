@@ -8,7 +8,9 @@
   .todo-item.completed label {
     text-decoration: line-through;
   }
-  
+  .completed {
+    text-decoration: line-through;
+  }
   .todo-item input[type="checkbox"] {
     margin-right: 8px;
   }
@@ -23,3 +25,4 @@
       transform: translateY(0);
     }
   }
+  

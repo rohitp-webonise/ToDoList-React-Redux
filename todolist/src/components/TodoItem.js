@@ -1,25 +1,25 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { toggleTodo } from '../actions/todoActions';
-import '../components/TodoItem.css';
+import '../css/TodoItem.css';
 
-const TodoItem = ({ todo, toggleTodo }) => {
-  const { id, text, completed } = todo;
+const TodoItem = ({ todo }) => {
+  const dispatch = useDispatch();
 
-  const handleToggle = () => {
-    toggleTodo(id);
+  const handleToggleTodo = () => {
+    dispatch(toggleTodo(todo.id));
   };
 
   return (
-    <div className={`todo-item ${completed ? 'completed' : ''}`}>
+    <div className={`todo-item ${todo.completed ? 'completed' : ''}`}>
       <input
         type="checkbox"
-        checked={completed}
-        onChange={handleToggle}
+        checked={todo.completed}
+        onChange={handleToggleTodo}
       />
-      <label>{text}</label>
+      <span>{todo.text}</span>
     </div>
   );
 };
 
-export default connect(null, { toggleTodo })(TodoItem);
+export default TodoItem;

@@ -1,25 +1,20 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addTodo } from '../actions/todoActions';
-import '../components/AddTodo.css';
+import '../css/AddTodo.css';
 
-const AddTodo = ({ addTodo }) => {
-  const [text, setText] = useState('');
+const AddTodo = () => {
+  const dispatch = useDispatch();
+  const [todoText, setTodoText] = useState('');
 
   const handleInputChange = (event) => {
-    setText(event.target.value);
+    setTodoText(event.target.value);
   };
 
   const handleAddTodo = () => {
-    if (text.trim() !== '') {
-      addTodo(text);
-      setText('');
-    }
-  };
-
-  const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
-      handleAddTodo();
+    if (todoText.trim() !== '') {
+      dispatch(addTodo(todoText));
+      setTodoText('');
     }
   };
 
@@ -27,14 +22,13 @@ const AddTodo = ({ addTodo }) => {
     <div className="add-todo">
       <input
         type="text"
-        placeholder="Add a new todo"
-        value={text}
+        placeholder="Enter todo..."
+        value={todoText}
         onChange={handleInputChange}
-        onKeyPress={handleKeyPress}
       />
-      <button onClick={handleAddTodo}>Add</button>
+      <button onClick={handleAddTodo}>Add Todo</button>
     </div>
   );
 };
 
-export default connect(null, { addTodo })(AddTodo);
+export default AddTodo;

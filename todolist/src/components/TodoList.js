@@ -1,22 +1,26 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import TodoItem from './TodoItem';
-import '../components/TodoList.css';
+import '../css/TodoList.css';
 
-const TodoList = ({ todos }) => {
+const TodoList = () => {
+  const todos = useSelector(state => state.todos);
+
+  if (!Array.isArray(todos)) {
+    return (
+      <div className="todo-list">
+        <p>No todos available.</p>
+      </div>
+    );
+  }
+
   return (
     <div className="todo-list">
-      {todos.map((todo) => (
+      {todos.map(todo => (
         <TodoItem key={todo.id} todo={todo} />
       ))}
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    todos: state.todos
-  };
-};
-
-export default connect(mapStateToProps)(TodoList);
+export default TodoList;

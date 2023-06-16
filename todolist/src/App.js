@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 import AddTodo from './components/AddTodo';
 import TodoList from './components/TodoList';
-import './App.css';
+import './css/App.css';
 
 const App = () => {
   return (

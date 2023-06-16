@@ -13,9 +13,9 @@ export const addTodo = (text) => {
   };
 };
 
-export const toggleTodo = (id) => {
+export const toggleTodo = (todoId) => {
   return {
     type: TOGGLE_TODO,
-    payload: id
+    payload: todoId
   };
 };
