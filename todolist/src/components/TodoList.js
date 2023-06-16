@@ -1,22 +1,26 @@
-import React from 'react'
-import "./todo.css"
+import React from 'react';
+import { useSelector } from 'react-redux';
+import TodoItem from './TodoItem';
+import '../css/TodoList.css';
 
 const TodoList = () => {
-  return (
-    <>
-       <div className='main-div'>
-      <div className='child-div'>
-        <figure>
-          <figcaption>Add Your List Here ✌️</figcaption>
-        </figure>
-        <div className='addItems'>
-            <input type='text' placeholder= "✍️ Add Items.. "/>
-            <i className="fa fa-plus add-btn">Add</i>
-        </div>
-      </div>
-    </div>  
-    </>
-  )
-}
+  const todos = useSelector(state => state.todos);
 
-export default TodoList
+  if (!Array.isArray(todos)) {
+    return (
+      <div className="todo-list">
+        <p>No todos available.</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="todo-list">
+      {todos?.map(todo => (
+        <TodoItem key={todo.id} todo={todo} />
+      ))}
+    </div>
+  );
+};
+
+export default TodoList;
