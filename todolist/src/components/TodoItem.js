@@ -1,23 +1,24 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { toggleTodo } from '../actions/todoActions';
+//import { useDispatch } from 'react-redux';
+//import { toggleTodo } from '../actions/todoActions';
 import '../css/TodoItem.css';
 
-const TodoItem = ({ todo }) => {
-  const dispatch = useDispatch();
+const TodoItem = ({ todo,onDelete }) => {
 
-  const handleToggleTodo = () => {
-    dispatch(toggleTodo(todo.id));
+
+  const handleDelete = () => {
+    onDelete(todo.id);
   };
 
   return (
-    <div className={`todo-item ${todo.completed ? 'completed' : ''}`}>
-      <input
+    <div className={`todo-item`}>
+      {/* <input
         type="checkbox"
         checked={todo.completed}
-        onChange={handleToggleTodo}
-      />
+       // onChange={handleToggleTodo}
+      /> */}
       <span>{todo.text}</span>
+      <button onClick={handleDelete} className="delete-button">Delete</button>
     </div>
   );
 };
