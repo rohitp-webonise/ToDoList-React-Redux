@@ -1,43 +1,36 @@
-import { ADD_TODO, DELETE_TODO, TOGGLE_TODO } from '../actions/todoActions';
+import { ADD_TODO, DELETE_TODO, TOGGLE_TODO } from "../actions/todoActions";
+import { combineReducers } from "redux";
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
 const initialState = {
-  todos: getTodosFromLocalStorage(),
+  todos: [], 
 };
 
-function getTodosFromLocalStorage() {
-  const todos = localStorage.getItem('todos');
-  return todos ? JSON.parse(todos) : [];
-}
-
 const todoReducer = (state = initialState, action) => {
+  
   switch (action.type) {
     case ADD_TODO:
       const newTodo = action.payload;
-      const updatedTodos = [...state.todos, newTodo];
-      localStorage.setItem('todos', JSON.stringify(updatedTodos));
       return {
         ...state,
-        todos: updatedTodos,
+        todos: [...state.todos, newTodo],
       };
-
+    
     case TOGGLE_TODO:
       const toggleTodoId = action.payload;
-      const toggledTodos = state.todos.map(todo =>
-        todo.id === toggleTodoId ? { ...todo, completed: !todo.completed } : todo
-      );
-      localStorage.setItem('todos', JSON.stringify(toggledTodos));
       return {
         ...state,
-        todos: toggledTodos,
+        todos: state.todos.map((todo) =>
+          todo.id === toggleTodoId ? { ...todo, completed: !todo.completed } : todo
+        ),
       };
 
     case DELETE_TODO:
       const deleteTodoId = action.payload;
-      const filteredTodos = state.todos.filter(todo => todo.id !== deleteTodoId);
-      localStorage.setItem('todos', JSON.stringify(filteredTodos));
       return {
         ...state,
-        todos: filteredTodos,
+        todos: state.todos.filter((todo) => todo.id !== deleteTodoId),
       };
 
     default:
@@ -45,4 +38,15 @@ const todoReducer = (state = initialState, action) => {
   }
 };
 
-export default todoReducer;
+const persistConfig = {
+  key: "root",
+  storage,
+};
+
+const rootReducer = combineReducers({
+  todoReducer:  todoReducer,
+
+});
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+export default persistedReducer;

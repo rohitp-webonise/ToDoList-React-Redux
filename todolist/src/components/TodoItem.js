@@ -1,11 +1,7 @@
-import React from 'react';
-//import { useDispatch } from 'react-redux';
-//import { toggleTodo } from '../actions/todoActions';
-import '../css/TodoItem.css';
+import React from "react";
+import "../css/TodoItem.css";
 
-const TodoItem = ({ todo,onDelete }) => {
-
-
+const TodoItem = ({ todo, onDelete }) => {
   const handleDelete = () => {
     onDelete(todo.id);
   };
@@ -18,7 +14,9 @@ const TodoItem = ({ todo,onDelete }) => {
        // onChange={handleToggleTodo}
       /> */}
       <span>{todo.text}</span>
-      <button onClick={handleDelete} className="delete-button">Delete</button>
+      <button onClick={handleDelete} className="delete-button">
+        Delete
+      </button>
     </div>
   );
 };

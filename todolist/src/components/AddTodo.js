@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addTodo } from '../actions/todoActions';
-import '../css/AddTodo.css';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addTodo } from "../actions/todoActions";
+import "../css/AddTodo.css";
 
 const AddTodo = () => {
   const dispatch = useDispatch();
-  const [todoText, setTodoText] = useState('');
+  const [todoText, setTodoText] = useState("");
 
   const handleInputChange = (event) => {
     setTodoText(event.target.value);
   };
 
   const handleAddTodo = () => {
-    if (todoText.trim() !== '') {
+    if (todoText.trim() !== "") {
       dispatch(addTodo(todoText));
-      setTodoText('');
+      setTodoText("");
     }
   };
 
