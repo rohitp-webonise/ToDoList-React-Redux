@@ -1,5 +1,6 @@
-export const ADD_TODO = 'ADD_TODO';
-export const TOGGLE_TODO = 'TOGGLE_TODO';
+export const ADD_TODO = "ADD_TODO";
+export const TOGGLE_TODO = "TOGGLE_TODO";
+export const DELETE_TODO = "DELETE_TODO";
 
 // Action Creators
 export const addTodo = (text) => {
@@ -8,14 +9,21 @@ export const addTodo = (text) => {
     payload: {
       id: Date.now(),
       text,
-      completed: false
-    }
+      completed: false,
+    },
   };
 };
 
 export const toggleTodo = (todoId) => {
   return {
     type: TOGGLE_TODO,
-    payload: todoId
+    payload: todoId,
+  };
+};
+
+export const deleteTodo = (todoId) => {
+  return {
+    type: DELETE_TODO,
+    payload: todoId,
   };
 };
